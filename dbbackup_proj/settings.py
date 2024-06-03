@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
+    'dbbackup',  # django-dbbackup
     #added apps
     'projects',
 ]
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR/'backups'}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
