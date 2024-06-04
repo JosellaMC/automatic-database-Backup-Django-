@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,12 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'dbbackup',  # django-dbbackup
+    "django_apscheduler",
     #added apps
     'projects',
 ]
 
+#backup settings
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR/'backups'}
+
+CRONJOBS = [
+    ('*/1 * * * *', 'dbbackup_proj.cron.my_scheduled_job')
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
